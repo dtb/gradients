@@ -1,0 +1,80 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "vendor/normalize/normalize";
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/transition";
+@import "susy";
+
+$total-columns:12;
+$column-width:4em;
+
+$gutter-width:1em;
+$grid-padding: $gutter-width;
+
+#content {
+	@include container;
+}
+
+#preview {
+	width: columns(8);
+	height: $column-width * 1.5;
+	margin:0 auto;
+	.gradbox {
+		width:100%;
+		height:100%;
+	}
+}
+
+#stops-container {
+	overflow:hidden;
+}
+#stops-container > div {
+	float:left;
+	position:relative;
+	left:50%;
+}
+#stops {
+	@include clearfix;
+	float:left;
+	position:relative;
+	left:-50%;
+	padding: 1em;
+
+	li {
+		float:left;
+		list-style:none;
+		margin:0 1em 0 0;
+		&.stop {
+			position:relative;
+			@include single-transition(all, 250ms);
+		}
+
+		&.blank {
+			input {
+				@include single-transition(opacity, 250ms);
+				opacity:.3;
+			}
+			&.active, &:hover {
+				input {
+					opacity:1;
+				}
+			}
+		}
+
+		input {
+			@include box-sizing(border-box);
+			display: block;
+			margin: 0 auto 1em auto;
+			text-align:center;
+			&.position {
+				width:4em;
+			}
+			&.color {
+				width:6em;
+			}
+		}
+	}
+}

@@ -1,0 +1,3 @@
+[submodule "styles/sass/vendor/normalize"]
+	path = styles/sass/vendor/normalize
+	url = git://github.com/ptb/normalize.sass.git
