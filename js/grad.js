@@ -94,7 +94,7 @@ var Grad = (function($, Backbone) {
 			}, this);
 		},
 		focus: function() {
-			this.$('input:first').focus();
+			this.$('input:first').focus().select();
 		},
 		render: function() {
 			this.$el.html(this.template({
@@ -108,6 +108,12 @@ var Grad = (function($, Backbone) {
 
 			return this;
 		},
+		setTabStop: function(i) {
+			this.$('input').eq(0)
+					.prop('tabindex', 2*(i+1))
+				.end().eq(1)
+					.prop('tabindex', 2*(i+1)+1);
+		}
 	}, {
 		fromStopLi: function(li) {
 			var $el = $(li);
@@ -166,6 +172,8 @@ var Grad = (function($, Backbone) {
 				stop.$el.css({
 					'left': pos + 'em'
 				});
+				stop.setTabStop(i);
+
 				if (stop.isNew) {
 					hasNew = true;
 				}
